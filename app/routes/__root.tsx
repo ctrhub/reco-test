@@ -2,6 +2,8 @@ import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
 
+import appCss from "@/styles/app.css?url"
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -14,6 +16,12 @@ export const Route = createRootRoute({
       },
       {
         title: 'Reco Test App',
+      },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
       },
     ],
   }),
