@@ -4,6 +4,8 @@ import type { ReactNode } from 'react'
 
 import appCss from "@/styles/app.css?url"
 
+import { NotFound } from '@/components/pages/not-found'
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -26,6 +28,7 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: () => <NotFound />,
 })
 
 function RootComponent() {
