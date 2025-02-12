@@ -7,7 +7,7 @@ export const Route = createFileRoute('/(app)/_app/')({
 
 function Home() {
   return (
-    <Container className="p-2">
+    <Container className="py-4">
       <h3>Welcome Home!!!</h3>
     </Container>
   )
