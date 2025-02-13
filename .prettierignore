@@ -1,0 +1,11 @@
+.idea/
+dist/
+public/
+node_modules/
+
+*.json
+**/*.json
+*.d.ts
+*.css
+*.md
+

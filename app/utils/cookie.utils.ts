@@ -7,7 +7,7 @@ export class CookieUtils {
     }
 
     const cookies = document.cookie.split("; ");
-    for (let cookie of cookies) {
+    for (const cookie of cookies) {
       const [_key, value] = cookie.split("=");
       if (_key === key) {
         return decodeURIComponent(value);
@@ -16,7 +16,7 @@ export class CookieUtils {
   }
 
   static setCookie(key: string, value: string) {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
       return setCookie(key, value);
     }
 

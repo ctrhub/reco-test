@@ -1,11 +1,7 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
-export function AppProviders({ children }: PropsWithChildren) {	
-	return (
-		<ThemeProvider>
-			{children}
-		</ThemeProvider>
-	);
+export function AppProviders({ children }: PropsWithChildren) {
+  return <ThemeProvider>{children}</ThemeProvider>;
 }
