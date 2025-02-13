@@ -1,5 +1,6 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
+import type { QueryClient } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 
 import appCss from '@/styles/app.css?url';
@@ -7,8 +8,12 @@ import appCss from '@/styles/app.css?url';
 import { NotFound } from '@/components/pages/not-found';
 import { CookieUtils } from '@/utils/cookie.utils';
 import { THEME_COOKIE_KEY } from '@/components/providers/theme-provider';
+import { SeoUtils } from '@/utils/seo.utils';
+import { DefaultCatchBoundary } from '@/components/pages/default-catch-boundary';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       {
@@ -21,6 +26,10 @@ export const Route = createRootRoute({
       {
         title: 'Reco Test App',
       },
+      ...SeoUtils.seo({
+        title: 'Reco Test App',
+        description: 'Test React app using Tanstack Start Kit',
+      }),
     ],
     links: [
       {
@@ -31,6 +40,13 @@ export const Route = createRootRoute({
   }),
   component: RootComponent,
   notFoundComponent: () => <NotFound />,
+  errorComponent: (props) => {
+    return (
+      <RootDocument>
+        <DefaultCatchBoundary {...props} />
+      </RootDocument>
+    );
+  },
 });
 
 function RootComponent() {

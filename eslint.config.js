@@ -4,6 +4,7 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import eslintConfigPrettier from "eslint-config-prettier";
+import pluginQuery from '@tanstack/eslint-plugin-query'
 
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -16,6 +17,7 @@ export default [
 		languageOptions: { globals: globals.browser },
 		plugins: {
 			"react-hooks": pluginReactHooks,
+			'@tanstack/query': pluginQuery,
 		},
 		settings: { react: { version: "detect" } },
 		rules: {

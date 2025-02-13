@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/atoms/avatar';
 import { Container } from '@/components/atoms/containter';
 import { useTheme } from '@/components/providers/theme-provider';
 import { Button } from '@/components/atoms/button';
+import { Route } from '@/routes/(app)/_app';
 
 function HeaderMenu() {
   return (
@@ -33,6 +34,8 @@ function HeaderMenu() {
 
 function HeaderUser() {
   const { theme, toggleTheme } = useTheme();
+  const { user } = Route.useLoaderData();
+
   return (
     <div className="flex justify-end items-center gap-4">
       <Button
@@ -45,8 +48,8 @@ function HeaderUser() {
       </Button>
       <Avatar className="w-10 h-10">
         <AvatarImage
-          src="https://github.com/shadcn.png"
-          alt="@shadcn"
+          src={user.image}
+          alt={user.firstName}
           className="object-cover"
         />
         <AvatarFallback>UA</AvatarFallback>
