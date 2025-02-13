@@ -8,122 +8,119 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as appAppImport } from './routes/(app)/_app'
-import { Route as appAppIndexImport } from './routes/(app)/_app.index'
+import { Route as rootRoute } from './routes/__root';
+import { Route as appAppImport } from './routes/(app)/_app';
+import { Route as appAppIndexImport } from './routes/(app)/_app/index';
 
 // Create Virtual Routes
 
-const appImport = createFileRoute('/(app)')()
+const appImport = createFileRoute('/(app)')();
 
 // Create/Update Routes
 
 const appRoute = appImport.update({
   id: '/(app)',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const appAppRoute = appAppImport.update({
   id: '/_app',
   getParentRoute: () => appRoute,
-} as any)
+} as any);
 
 const appAppIndexRoute = appAppIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => appAppRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/(app)': {
-      id: '/(app)'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof appImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/(app)';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof appImport;
+      parentRoute: typeof rootRoute;
+    };
     '/(app)/_app': {
-      id: '/(app)/_app'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof appAppImport
-      parentRoute: typeof appRoute
-    }
+      id: '/(app)/_app';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof appAppImport;
+      parentRoute: typeof appRoute;
+    };
     '/(app)/_app/': {
-      id: '/(app)/_app/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof appAppIndexImport
-      parentRoute: typeof appAppImport
-    }
+      id: '/(app)/_app/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof appAppIndexImport;
+      parentRoute: typeof appAppImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface appAppRouteChildren {
-  appAppIndexRoute: typeof appAppIndexRoute
+  appAppIndexRoute: typeof appAppIndexRoute;
 }
 
 const appAppRouteChildren: appAppRouteChildren = {
   appAppIndexRoute: appAppIndexRoute,
-}
+};
 
-const appAppRouteWithChildren =
-  appAppRoute._addFileChildren(appAppRouteChildren)
+const appAppRouteWithChildren = appAppRoute._addFileChildren(appAppRouteChildren);
 
 interface appRouteChildren {
-  appAppRoute: typeof appAppRouteWithChildren
+  appAppRoute: typeof appAppRouteWithChildren;
 }
 
 const appRouteChildren: appRouteChildren = {
   appAppRoute: appAppRouteWithChildren,
-}
+};
 
-const appRouteWithChildren = appRoute._addFileChildren(appRouteChildren)
+const appRouteWithChildren = appRoute._addFileChildren(appRouteChildren);
 
 export interface FileRoutesByFullPath {
-  '/': typeof appAppIndexRoute
+  '/': typeof appAppIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof appAppIndexRoute
+  '/': typeof appAppIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/(app)': typeof appRouteWithChildren
-  '/(app)/_app': typeof appAppRouteWithChildren
-  '/(app)/_app/': typeof appAppIndexRoute
+  __root__: typeof rootRoute;
+  '/(app)': typeof appRouteWithChildren;
+  '/(app)/_app': typeof appAppRouteWithChildren;
+  '/(app)/_app/': typeof appAppIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/(app)' | '/(app)/_app' | '/(app)/_app/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/';
+  id: '__root__' | '/(app)' | '/(app)/_app' | '/(app)/_app/';
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  appRoute: typeof appRouteWithChildren
+  appRoute: typeof appRouteWithChildren;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   appRoute: appRouteWithChildren,
-}
+};
 
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -148,7 +145,7 @@ export const routeTree = rootRoute
       ]
     },
     "/(app)/_app/": {
-      "filePath": "(app)/_app.index.tsx",
+      "filePath": "(app)/_app/index.tsx",
       "parent": "/(app)/_app"
     }
   }
