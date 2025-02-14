@@ -16,6 +16,7 @@ export const useUser = () => {
   const { data, error } = useSuspenseQuery({
     queryKey: [STATE_KEYS.USER],
     queryFn: usersApi.getUser,
+    staleTime: Infinity,
   });
 
   return { user: data, error };

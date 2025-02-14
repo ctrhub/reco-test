@@ -21,10 +21,10 @@ function HeaderMenu() {
         </li>
         <li>
           <Link
-            to="/"
+            to="/todos"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            About
+            Todos
           </Link>
         </li>
       </ul>
