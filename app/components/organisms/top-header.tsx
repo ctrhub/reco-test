@@ -16,7 +16,7 @@ function HeaderMenu() {
             to="/"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Home
+            Apps
           </Link>
         </li>
         <li>
